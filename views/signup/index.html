@@ -14,8 +14,7 @@
       <div class="hidden lg:flex w-2/4 justify-center items-center ">
         <img src="/imag/signup.svg" alt="imagen de login" />
       </div>
-      <form
-        class="flex flex-col gap-4 bg-zinc-200 p-4 rounded-lg text-md shadow-lg lg:w-2/4"
+      <form id="form"class="flex flex-col gap-4 bg-zinc-200 p-4 rounded-lg text-md shadow-lg lg:w-2/4"
       >
         <div class="flex flex-col gap-2">
           <label for="name-input" class="font-bold text-zinc-900">
@@ -64,6 +63,7 @@
           <p class="text-xs text-zinc-800">
             Debe tener al menos una letra.<br>
             Debe tener al menos un numero.<br>
+            Debe tener al menos 8 caracteres.
           </p>
         </div>
 
@@ -87,12 +87,13 @@
         <button 
         id="form-btn"
         disabled
-        class="bg-indigo-700 py-2 px-4 rounded-lg font-bold text-white hover:bg-indigo-800 text-center transition ease-in-out"
+        class="bg-indigo-700 py-2 px-4 rounded-lg font-bold text-white hover:bg-indigo-800 text-center transition ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
         >
         Registrar
         </button>
       </form>
     </div>
     <script src="/components/nav.js"></script>
+    <script src="index.js"></script>
   </body>
 </html>
