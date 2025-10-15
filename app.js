@@ -23,6 +23,9 @@ app.use('/components', express.static(path.resolve('views','components')));
 app.use('/imag', express.static(path.resolve('imag')));
 
 
+//Rutas backend
+// app.use('/api/users', usersRouter);
+// app.use('/api/login', loginRouter);
 
 
 module.exports = app;
