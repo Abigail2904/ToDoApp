@@ -10,9 +10,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
+    "mogoose": "^0.0.1-security",
+    "mongodb": "4.1",
     "mongoose": "^8.19.1",
+    "morgan": "^1.10.1",
     "nodemon": "^3.1.10"
   },
   "devDependencies": {
