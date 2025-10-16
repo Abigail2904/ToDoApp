@@ -1,6 +1,7 @@
 const emailInput = document.querySelector('#email-input');
 const passwordInput = document.querySelector('#password-input');
 const form = document.querySelector('#form');
+const errorText = document.querySelector('#error-text');
 
 form.addEventListener('submit', async e => {
     e.preventDefault();
@@ -10,10 +11,12 @@ form.addEventListener('submit', async e => {
         password: passwordInput.value
     };
     await axios.post('/api/login', user);
-    console.log(user);
+    window.location.pathname = `/todos/`;
+    // console.log(user);
 
     } catch(error) {
-
+    console.log(error);
+    errorText.innerHTML = error.response.data.error;
     }
 });
 
