@@ -7,9 +7,6 @@ const totalCountSpan = document.querySelector('.total-count');
 const completedCountSpan = document.querySelector('.completed-count');
 const incompletedCountSpan = document.querySelector('.incompleted-count');
 
-(async () => {
-	const { data } = await axios.get('/api/todos');
-}) ();
 
 const totalCount = () => {
 	const howMany = document.querySelector('ul').children.length; 
