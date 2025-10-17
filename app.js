@@ -6,14 +6,12 @@ const path = require('path');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
-const usersRouter = require('./controllers/user');
+const usersRouter = require('./controllers/users');
 const mongodb = require('mongodb');
 
 
 (async() => {
     try {
-      // const cliente = new mongodb.MongoClient(process.env.MONGO_URI_TEST);
-        //await cliente.connect();
         await mongoose.connect(process.env.MONGO_URI_TEST);  
         console.log('Conectado a MongoDB');     
     } catch (error) {

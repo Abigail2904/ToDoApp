@@ -1,4 +1,4 @@
-import { createNotificacion } from '../components/notification.js';  
+import { createNotification } from '../components/notification.js';  
 
 
 const form = document.querySelector('#form');
@@ -59,18 +59,22 @@ matchInput.addEventListener('input', e => {
     validations(matchInput, matchValidation);
 });
 
+//submit form
+
 form.addEventListener('submit', async e => {
     e.preventDefault();
     try {
         const newUser = {
             name: nameInput.value,
             email: emailInput.value,
-            password: passwordInput.value
+            password: passwordInput.value,
         }
+        console.log('nuevo usuario',newUser);
+        
         const response = await axios.post('/api/users', newUser);
         console.log(response);
     } catch (error) {
-        createNotificacion(true, error.response.data.error);
+        createNotification(true, error.response.data.error);
         setTimeout(() => {
             notification.innerHTML = '';
         }, 5000)
