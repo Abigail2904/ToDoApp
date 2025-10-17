@@ -1,14 +1,14 @@
 const loginRouter = require("express").Router();
-const user = require('../models/user');
-const bcypt = require('bcrypt');
+const User = require('../models/user');
+const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 
 loginRouter.post('/', async (request, response) => {
     const { email, password } = request.body;
-    const userExist = await UserActivation.find({ email })
-     //console.log(userExist);
-     //console.log(email, password);
+    // console.log(email, password);
+    const userExist = await User.findOne({ email })
+     console.log('este es el user exist', userExist); 
 
     if (!userExist) {
         return response.status(400).json({ error: 'Email o contraseña invalida'});
@@ -30,7 +30,7 @@ loginRouter.post('/', async (request, response) => {
 
 
     const accessToken = jwt.sign(userForToken, process.env.ACCESS_TOKEN_SECRET, {
-        expiresIn: 'Id'
+        expiresIn: '1d'
     });
 
 

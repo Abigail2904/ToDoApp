@@ -10,9 +10,9 @@ form.addEventListener('submit', async e => {
         email: emailInput.value,
         password: passwordInput.value
     };
+    console.log(user);
     await axios.post('/api/login', user);
     window.location.pathname = `/todos/`;
-    // console.log(user);
 
     } catch(error) {
     console.log(error);
