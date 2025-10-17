@@ -1,4 +1,4 @@
-const mongoose = require('mongoose'); // dependencia para manejar MongoDB
+const mongoose = require('mongoose');// dependencia para manejar MongoDB
 
 const userSchema = new mongoose.Schema({ //tabla usuarios
     name: String, 
@@ -19,5 +19,7 @@ userSchema.set('toJSON', { // Configuración para transformar el objeto al conve
     }
 
 });
+
 const User = mongoose.model('User', userSchema); //crea el modelo
+
 module.exports = User;

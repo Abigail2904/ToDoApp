@@ -1,7 +1,7 @@
 const div = document.querySelector('#notification');
 
 
- export const createNotificacion = (isError, message) => {
+ export const createNotification = (isError, message) => {
     if(isError){
         div.innerHTML = ` 
      <div class= "max-w-7xl mx-auto px-4 flex justify-end">
@@ -9,8 +9,6 @@ const div = document.querySelector('#notification');
     </div>
     ` 
     } else {
-
-
 
     div.innerHTML = ` 
      <div class= "max-w-7xl mx-auto px-4 flex justify-end">
