@@ -1,4 +1,4 @@
-require('dotenv').config();
+ require('dotenv').config();
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
@@ -30,7 +30,7 @@ app.use('/signup', express.static(path.resolve('views','signup')));
 app.use('/login', express.static(path.resolve('views','login')));
 app.use('/components', express.static(path.resolve('views','components')));
 app.use('/imag', express.static(path.resolve('imag')));
-app.use('/todos', express.static(path.resolve('views', 'todos')));
+//app.use('/todos', express.static(path.resolve('views', 'todos')));
 
 app.use(morgan('tiny'));
 
@@ -38,7 +38,7 @@ app.use(morgan('tiny'));
 //Rutas backend
 app.use('/api/users', usersRouter);
 app.use('/api/login', loginRouter);
- app.use('/api/todos', todosRouter);
+ //app.use('/api/todos', todosRouter);
  
 
 

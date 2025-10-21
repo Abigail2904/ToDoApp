@@ -63,22 +63,45 @@ matchInput.addEventListener('input', e => {
 
 form.addEventListener('submit', async e => {
     e.preventDefault();
+
     try {
+        // Crear el nuevo usuario
         const newUser = {
             name: nameInput.value,
             email: emailInput.value,
-            password: passwordInput.value,
+            password: passwordInput.value
         }
-        console.log('nuevo usuario',newUser);
+
+        // Limpiar el formulario
+        //nameInput.value = '';
+        //emailInput.value = '';
+        //passwordInput.value = '';
+        //matchInput.value = '';
+
+        // Resetear las validaciones
+        //validation(nameInput, false);
+        //validation(emailInput, false);
+        //validation(passwordInput, false);
+        //validation(matchInput, false);
         
-        const response = await axios.post('/api/users', newUser);
-        console.log(response);
+        console.log('new user',newUser);
+        
+        // Enviar el usuario al servidor
+        const {data} = await axios.post('/api/users', newUser);
+        console.log('string', data);
+        
+        // Mostrar notificación
+        createNotification(false, data);
+        setTimeout(() => {
+            notification.innerHTML = '';
+        }, 4000);
+
     } catch (error) {
+        // Mostrar notificación de error
         createNotification(true, error.response.data.error);
         setTimeout(() => {
             notification.innerHTML = '';
-        }, 5000)
-            
-        
+        }, 4000);
     }
+
 });
