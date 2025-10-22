@@ -2,6 +2,8 @@ const usersRouter = require('express').Router();
 const User = require ('../models/user');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const { createTestAccount } = require('nodemailer');
+const nodemailer = require('nodemailer');
 
 
 // Obtener todos los usuarios
@@ -23,11 +25,10 @@ const saltRounds = 10;
     });
 
     const savedUser = await newUser.save();
-   // const token = jwt.sign({ id: savedUser.id }, process.env.ACCES_TOKEN_SECRET);
-    console.log('usuario guardado:', savedUser);
-
-
-
+     //console.log('usuario guardado:', savedUser);
+   const token = jwt.sign({ id: savedUser.id }, process.env.ACCESS_TOKEN_SECRET);
+   console.log('token generado:', token);
 });
 
+// Exportar el router
 module.exports = usersRouter;
