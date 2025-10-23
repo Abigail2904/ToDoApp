@@ -127,12 +127,12 @@ const createNavTodos = () => {
 
         <!--version escritorio-->
         <div class="hidden md:flex flex-row gap-4">
-          <button class="transition ease-in-out text-white font-bold hover:bg-indigo-800 py-2 px-4 rounded-lg">Cerrar sesion</button>
+          <button id="close-btn" class="transition ease-in-out text-white font-bold hover:bg-indigo-800 py-2 px-4 rounded-lg">Cerrar sesion</button>
         </div>
 
         <!--menu movil-->
         <div class="bg-slate-900/60 fixed top-16 right-0 left-0 bottom-0 justify-center items-center flex-col gap-4 hidden">
-            <button class="transition ease-in-out text-white font-bold hover:bg-indigo-800 py-2 px-4 rounded-lg">Cerrar sesion</button>
+            <button id="close-btn" class="transition ease-in-out text-white font-bold hover:bg-indigo-800 py-2 px-4 rounded-lg">Cerrar sesion</button>
       </div>
     </div>
     `;
@@ -145,6 +145,8 @@ if (window.location.pathname === "/") {
   createNavSignunp();
 } else if (window.location.pathname === '/login/') {
   createNavLogin();
+} else if (window.location.pathname === '/todos/') {
+  createNavTodos();
 }
 
 const navBtn = navbar.children[0].children[1];
@@ -163,3 +165,19 @@ navBtn.addEventListener("click", (e) => {
     menuMobile.classList.remove("flex");
 }
 });
+
+
+const closeBtnDesktop = navbar.children[0].children[2].children[0];
+const closeBtnMobile = navbar.children[0].children[2].children[0];
+
+
+closeBtnDesktop.addEventListener('click', async e => {
+  try {
+    await axios.get('/api/logout')
+    window.location.pathname = '/login';
+  } catch (error) {
+    console.log(error);
+    
+  }
+  
+})
