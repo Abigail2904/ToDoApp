@@ -1,3 +1,4 @@
+//Selección de elementos del DOM
 const input = document.querySelector('input');
 const ul = document.querySelector('ul');
 const addBtn = document.querySelector('.add-btn');
@@ -8,6 +9,7 @@ const completedCountSpan = document.querySelector('.completed-count');
 const incompletedCountSpan = document.querySelector('.incompleted-count');
 
 
+//Funciones de conteo de tareas
 const totalCount = () => {
 	const howMany = document.querySelector('ul').children.length; 
 	totalCountSpan.innerHTML = howMany;
@@ -29,10 +31,12 @@ const todoCount = () => {
 	incompletedCount();
 };
 
+
+//Agregar una nueva tarea (evento submit del form)
 form.addEventListener('submit', async e => {
 	e.preventDefault();
 
-	// Check if the input is empty
+	// Validación del input
 	if (input.value === '') {
 		input.classList.remove('focus:ring-2', 'focus:ring-violet-600');
 		input.classList.add('focus:ring-2', 'focus:ring-rose-600');
@@ -40,15 +44,17 @@ form.addEventListener('submit', async e => {
 		return
 	}
 
-	// Remove classes and hide invalidCheck
+	// Reset visual del input
 	input.classList.remove('focus:ring-2', 'focus:ring-rose-600', 'border-2', 'border-rose-600');
 	input.classList.add('focus:ring-2', 'focus:ring-violet-600');
 	invalidCheck.classList.add('hidden');
 
-	// Create list item
+	// Crear tarea en el backend
 	const { data } = await axios.post('/api/todos', { text: input.value });
 	console.log(data);
 
+
+	//Crear el elemento <li> en el DOM
 	const listItem = document.createElement('li');
 	listItem.id = data.id;
 	listItem.classList.add('flex', 'flex-row');
@@ -68,18 +74,20 @@ form.addEventListener('submit', async e => {
 		</button>
 	`;
 
-	// Append listItem
+	// Agregar al DOM y limpiar input
 	ul.append(listItem);
 
-	// Empty input
+	
 	input.value = ''
 
 	todoCount();
 });
 
+
+//Manejo de clicks en las tareas (ul.addEventListener)
 ul.addEventListener('click', async e => {
 
-	// Select delete-icon
+	// Eliminar tarea
 	if (e.target.closest('.delete-icon')) {
 		const li = e.target.closest('.delete-icon').parentElement.parentElement;
 		await axios.delete(`/api/todos/${li.id}`);
@@ -87,7 +95,7 @@ ul.addEventListener('click', async e => {
 		todoCount();
 	}
 
-	// Select check-icon
+	// Marcar tarea como completada o incompleta
 	if (e.target.closest('.check-icon')) {
 		const checkIcon = e.target.closest('.check-icon');
 		const listItem = checkIcon.parentElement;
@@ -109,12 +117,16 @@ ul.addEventListener('click', async e => {
 	}
 });
 
+
+//Cargar tareas al iniciar la página
 (async () => {
 	try {
 		const { data } = await axios.get('/api/todos', {
 			withCredentials: true
 		});
 		
+
+		//Agregar tareas al DOM desde el backend
 		data.forEach(todo => {
 			const listItem = document.createElement('li');
 			listItem.id = todo.id;
@@ -146,6 +158,7 @@ ul.addEventListener('click', async e => {
 			ul.append(listItem);
 		})
 		todoCount();
+		//Manejo de error (usuario no logueado)
 	} catch (error) {
 		window.location.pathname = '/login'
         console.log(error);
