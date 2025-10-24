@@ -33,7 +33,7 @@ const saltRounds = 10;
 
     const saveUser = await newUser.save();
      console.log('usuario guardado:', saveUser);
-   const token = jwt.sign({ id: saveUser.id }, process.env.ACCESS_TOKEN_SECRET,{ expiresIn: '1d' });
+   const token = jwt.sign({ id: saveUser.id }, process.env.ACCESS_TOKEN_SECRET,{ expiresIn: '1m' });
    console.log('token generado:', token);
     // Configurar el transporte de nodemailer
 
@@ -61,9 +61,9 @@ try {
     const token = request.params.token;
 const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
  console.log(decodedToken);
- //const id= decodedToken.id;
- //await User.findByIdAndUpdate(id, { verified: true });
- //return response.status.sendStatus(200)
+ const id= decodedToken.id;
+ await User.findByIdAndUpdate(id, { verified: true });
+ return response.status.sendStatus(200)
 } catch (error) {
     //encontrar el email del usuario    
     const id = request.params.id;
@@ -71,7 +71,7 @@ const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
     console.log(email);
     
     //firmar el nuevo token
-const token = jwt.sign({ id: id }, process.env.ACCESS_TOKEN_SECRET,{ expiresIn: '1d' });
+const token = jwt.sign({ id: id }, process.env.ACCESS_TOKEN_SECRET,{ expiresIn: '1m' });
    console.log('token generado:', token);
 
     // enviar el correo de nuevo

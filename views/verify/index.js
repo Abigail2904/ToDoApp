@@ -11,7 +11,7 @@ const textInfo = document.querySelector('#text-info');
         //window.location.pathname = '/login';
     } catch (error) {
         textInfo.innerHTML = error.response.data.error;
-       // console.log(error.response.data.error);
+        console.log(error.response.data.error);
     }
         
 
