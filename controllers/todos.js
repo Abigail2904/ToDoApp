@@ -1,14 +1,18 @@
+//Importanciones
 const todosRouter = require("express").Router();
 const User = require('../models/user');
 const Todo = require('../models/todo');
 
 
+//Obtener todas las tareas del usuario (GET /api/todos)
 todosRouter.get('/', async (request, response) => {
     const user = request.user;
     const todos = await Todo.find({ user: user.id });
     return response.status(200).json(todos);
 });
-// Crear un nuevo todo
+
+
+//Crear una nueva tarea (POST /api/todos
 todosRouter.post('/', async (request, response) => {
     const user = request.user;
     const { text } = request.body;
@@ -24,7 +28,8 @@ todosRouter.post('/', async (request, response) => {
     return response.status(201).json(savedTodo);
 });
 
-// Eliminar un todo por ID
+
+//Eliminar una tarea (DELETE /api/todos/:id)
 todosRouter.delete('/:id', async (request, response) => {
     const user = request.user;
     
@@ -36,7 +41,8 @@ todosRouter.delete('/:id', async (request, response) => {
     return response.sendStatus(204);
 });
 
-// Actualizar el estado de un todo por ID
+
+//Actualizar el estado de una tarea (PATCH /api/todos/:id)
 todosRouter.patch('/:id', async (request, response) => {
     const user = request.user;
     
@@ -47,6 +53,7 @@ todosRouter.patch('/:id', async (request, response) => {
 
     return response.sendStatus(200);
 });
+
 
 
 module.exports = todosRouter;
