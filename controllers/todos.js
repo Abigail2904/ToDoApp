@@ -8,7 +8,7 @@ todosRouter.get('/', async (request, response) => {
     const todos = await Todo.find({ user: user.id });
     return response.status(200).json(todos);
 });
-
+// Crear un nuevo todo
 todosRouter.post('/', async (request, response) => {
     const user = request.user;
     const { text } = request.body;
@@ -24,7 +24,7 @@ todosRouter.post('/', async (request, response) => {
     return response.status(201).json(savedTodo);
 });
 
-
+// Eliminar un todo por ID
 todosRouter.delete('/:id', async (request, response) => {
     const user = request.user;
     
@@ -36,7 +36,7 @@ todosRouter.delete('/:id', async (request, response) => {
     return response.sendStatus(204);
 });
 
-
+// Actualizar el estado de un todo por ID
 todosRouter.patch('/:id', async (request, response) => {
     const user = request.user;
     

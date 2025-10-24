@@ -8,6 +8,10 @@ const userSchema = new mongoose.Schema({ //tabla usuarios
         type: Boolean,
         default: false
     },
+    todos: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Todo' // Referencia al modelo Todo
+    }]
 });
 //configuración para que al convertir a JSON no muestre ciertos campos
 userSchema.set('toJSON', { // Configuración para transformar el objeto al convertirlo a JSON solo cuando se envía como respuesta
