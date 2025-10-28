@@ -49,7 +49,7 @@ todosRouter.patch('/:id', async (request, response) => {
     const { checked } = request.body;
     console.log(request.params.id);
 
-    await Todo.findOneAndUpdate(request.params.id, { checked });
+    await Todo.findByIdAndUpdate(request.params.id, { checked });
 
     return response.sendStatus(200);
 });
