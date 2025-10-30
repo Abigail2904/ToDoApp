@@ -14,6 +14,7 @@ const { userExtractor } = require('./middleware/auth');
 const logoutRouter = require('./controllers/logout');
 const { MONGO_URI } = require('./config');
 
+
 (async() => {
     try {
         await mongoose.connect(MONGO_URI);  
@@ -35,6 +36,7 @@ app.use('/components', express.static(path.resolve('views','components')));
 app.use('/imag', express.static(path.resolve('imag')));
 app.use('/verify/:id/:token', express.static(path.resolve('views','verify')));
 app.use('/todos', express.static(path.resolve('views', 'todos')));
+app.use('/styles', express.static(path.resolve('views','styles')));
 
 app.use(morgan('tiny'));
 
