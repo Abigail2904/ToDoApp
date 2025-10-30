@@ -11,10 +11,12 @@ const mongodb = require('mongodb');
 const loginRouter = require('./controllers/login');
 const todosRouter = require('./controllers/todos');
 const { userExtractor } = require('./middleware/auth');
+const logoutRouter = require('./controllers/logout');
+const { MONGO_URI } = require('./config');
 
 (async() => {
     try {
-        await mongoose.connect(process.env.MONGO_URI_TEST);  
+        await mongoose.connect(MONGO_URI);  
         console.log('Conectado a MongoDB');     
     } catch (error) {
         console.error('Error connecting to MongoDB:', error);
@@ -41,7 +43,7 @@ app.use(morgan('tiny'));
 app.use('/api/users', usersRouter);
 app.use('/api/login', loginRouter);
 app.use('/api/todos', userExtractor, todosRouter);
- 
+app.use('/api/logout', logoutRouter);
 
 
 
