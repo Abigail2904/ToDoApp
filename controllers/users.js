@@ -24,7 +24,7 @@ usersRouter.post('/', async (request, response) => {
     if (userexists) {
         return response.status(400).json({ error: 'el correo ya esta en uso' });
     }
-const saltRounds = 10; 
+const saltRounds = 10;  
     const passwordHash = await bcrypt.hash(password, saltRounds);
     const newUser = new User({
         name,

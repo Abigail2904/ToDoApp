@@ -991,12 +991,11 @@ video {
   outline-width: 2px;
 }
 
-.outline-green-700 {
-  outline-color: #15803d;
-}
-
 .outline-red-700 {
   outline-color: #b91c1c;
+}
+.outline-green-700 {
+  outline-color: #15803d;
 }
 
 .transition {
