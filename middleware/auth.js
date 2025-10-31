@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
-
+//middleware para extraer el usuario del token en las cookies
 const userExtractor = async (request, response, next) => {
     try {
         const token = request.cookies?.accessToken;

@@ -82,7 +82,8 @@ form.addEventListener('submit', async e => {
 
 	todoCount();
 });
-
+// crea un <li> para eliminar y marcar como completado 
+//envia la tarea al back con axios.post
 
 //Manejo de clicks en las tareas (ul.addEventListener)
 ul.addEventListener('click', async e => {
