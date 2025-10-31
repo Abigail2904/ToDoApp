@@ -1,17 +1,17 @@
  require('dotenv').config();
-const express = require('express');
+const express = require('express'); 
 const app = express();
-const mongoose = require('mongoose');
-const path = require('path');
-const cors = require('cors');
-const cookieParser = require('cookie-parser');
-const morgan = require('morgan');
-const usersRouter = require('./controllers/users');
-const mongodb = require('mongodb');
-const loginRouter = require('./controllers/login');
-const todosRouter = require('./controllers/todos');
-const { userExtractor } = require('./middleware/auth');
-const logoutRouter = require('./controllers/logout');
+const mongoose = require('mongoose'); //mongoose para mongodb
+const path = require('path'); //path para rutas de archivos
+const cors = require('cors'); //cors para permitir solicitudes entre dominios
+const cookieParser = require('cookie-parser'); //cookie-parser para manejar cookies
+const morgan = require('morgan'); //morgan para logs de solicitudes
+const usersRouter = require('./controllers/users'); //importar el router de usuarios
+const mongodb = require('mongodb'); //mongodb para la base de datos
+const loginRouter = require('./controllers/login'); //importar el router de login
+const todosRouter = require('./controllers/todos'); //importar el router de todos
+const { userExtractor } = require('./middleware/auth'); //importar el middleware de autenticación
+const logoutRouter = require('./controllers/logout'); //importar el router de logout
 const { MONGO_URI } = require('./config');
 
 

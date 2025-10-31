@@ -21,6 +21,7 @@ userSchema.set('toJSON', { // Configuración para transformar el objeto al conve
         delete returnedObject.__v;
         delete returnedObject.passwordHash; // No mostrar el passwordHash
     }
+    //userschema es el esquema del modelo de usuario
 
 });
 

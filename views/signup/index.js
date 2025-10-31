@@ -1,6 +1,7 @@
-import { createNotification } from '../components/notification.js';  
+import { createNotification } from '../components/notification.js';   //import axios from 'axios';
 //console.log(axios);
 
+//selección de elementos del DOM
 const form = document.querySelector('#form');
 const nameInput = document.querySelector('#name-input');
 const emailInput = document.querySelector('#email-input');
@@ -14,12 +15,14 @@ const EMAIL_VALIDATION =/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{
 const PASSWORD_VALIDATION = /^(?=.*\d)(?=.*[a-z])(?=.*[a-zA-Z]).{8,}$/;
 const NAME_VALIDATION = /^[A-Z\u00d1][a-zA-Z-ÿí\u00f1\u00d1]+(\s*[A-Z\u00d1][a-zA-Z-ÿí\u00f1\u00d1\s]*)$/;
 
-//validations
+//validaciones estado de las validaciones
 let nameValidation = false;
 let emailValidation = false;
 let passwordValidation = false;
 let matchValidation = false;
 
+
+//función de validaciones
 const validations = (input, regexValidation) => {
  formBtn.disabled = nameValidation && emailValidation && passwordValidation && matchValidation ? false : true;
     if(input.value === ''){
@@ -36,7 +39,7 @@ const validations = (input, regexValidation) => {
 
 }
 };
-//eventos 
+//eventos de inputs
 nameInput.addEventListener('input', e => {
     nameValidation = NAME_VALIDATION.test(e.target.value);
     validations(nameInput, nameValidation);
@@ -59,7 +62,10 @@ matchInput.addEventListener('input', e => {
     validations(matchInput, matchValidation);
 });
 
-//submit form
+//evento de submit
+//crear usuario new user
+//envia datos al backend usando axios
+//maneja respuestas exitosas y errores mostrando notificaciones
 
 form.addEventListener('submit', async e => {
     e.preventDefault();
@@ -96,3 +102,4 @@ form.addEventListener('submit', async e => {
         
     }
 });
+//crea un objeto nuevo de usuario y lo envía al servidor mediante una solicitud POST utilizando axios. Si la solicitud es exitosa, muestra una notificación de éxito y limpia el formulario; si hay un error, muestra una notificación de error.
